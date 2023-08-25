@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NodeMCU Display OLED</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        #messageInput {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        #submitButton {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #submitButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>NodeMCU Display OLED</h1>
+    <p>Insira a mensagem a ser exibida no display:</p>
+    <textarea id="messageInput" rows="4" placeholder="Digite sua mensagem..."></textarea>
+    <br>
+    <button id="submitButton" onclick="sendMessage()">Enviar Mensagem</button>
+
+    <script>
+        function sendMessage() {
+            var message = document.getElementById("messageInput").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/send_message?message=" + encodeURIComponent(message), true);
+            xhr.send();
+            /* alert("Mensagem enviada com sucesso!"); */
+        }
+    </script>
+</body>
+</html>
